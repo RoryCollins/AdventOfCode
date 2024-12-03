@@ -4,26 +4,25 @@ using System.Text.RegularExpressions;
 
 public partial class Solution
 {
-    private readonly IEnumerable<string> memory;
+    private readonly string memory;
 
     public Solution(IEnumerable<string> input)
     {
-        this.memory = input;
+        this.memory = string.Join("", input);
     }
 
     public object PartOne()
     {
-        return this.memory
-            .Sum(line => MulRegex()
-                .Matches(line)
-                .Sum(match =>
-                    int.Parse(match.Groups[1].Value) * int.Parse(match.Groups[2].Value)
-                ));
+        return MulRegex()
+            .Matches(this.memory)
+            .Sum(match =>
+                int.Parse(match.Groups[1].Value) * int.Parse(match.Groups[2].Value)
+            );
     }
 
     public object PartTwo()
     {
-        return string.Join("", this.memory)
+        return this.memory
             .Split("do()")
             .Select(GetValidSection)
             .Sum(section => MulRegex()
