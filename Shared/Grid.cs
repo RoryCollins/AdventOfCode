@@ -15,7 +15,7 @@ public class Grid
     }
 
     public Coordinate2D TopLeft() => new(0, Height - 1);
-    public Coordinate2D BottomRight() => new(Width-1, 0);
+    public Coordinate2D BottomRight() => new(Width - 1, 0);
 
     public IEnumerable<Coordinate2D> GetNeighbours(Coordinate2D centre, bool includeDiagonals)
     {
@@ -30,13 +30,14 @@ public class Grid
         if (includeDiagonals)
         {
             directions = directions.Concat(new[]
-                {
-                    Coordinate2D.NorthEast,
-                    Coordinate2D.NorthWest,
-                    Coordinate2D.SouthEast,
-                    Coordinate2D.SouthWest,
-                }
-            ).ToArray();
+                    {
+                        Coordinate2D.NorthEast,
+                        Coordinate2D.NorthWest,
+                        Coordinate2D.SouthEast,
+                        Coordinate2D.SouthWest,
+                    }
+                )
+                .ToArray();
         }
 
         return directions
@@ -60,6 +61,18 @@ public class Grid
         foreach (var line in this.contents)
         {
             Console.WriteLine(line);
+        }
+    }
+
+    public IEnumerable<Coordinate2D> FindAll(char c)
+    {
+        for (int y = 0; y < this.Height; y++)
+        {
+            for (int x = 0; x < this.Width; x++)
+            {
+                var coordinate = new Coordinate2D(y, x);
+                if (this.At(coordinate) == c) yield return coordinate;
+            }
         }
     }
 }
