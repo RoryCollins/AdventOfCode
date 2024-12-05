@@ -5,32 +5,6 @@ using Shared;
 
 internal record GmPair(int Microchip, int Generator);
 
-internal class State : IEquatable<State>
-{
-    public State(int elevator, List<GmPair> gmPairs)
-    {
-        this.GmPairs = gmPairs;
-        this.Elevator = elevator;
-    }
-
-    public List<GmPair> GmPairs { get; init; }
-    public int Elevator { get; init; }
-
-    public bool Equals(State? other)
-    {
-        if (this.Elevator != other.Elevator) return false;
-
-        foreach (var combination in this.GmPairs.Distinct())
-        {
-            var thisCount = this.GmPairs.Count(it => it == combination);
-            var otherCount = other.GmPairs.Count(it => it == combination);
-            if (thisCount != otherCount) return false;
-        }
-
-        return true;
-    }
-}
-
 public partial class Solution
 {
     // private List<GmPair> combinations = [];
@@ -38,8 +12,6 @@ public partial class Solution
 
     public Solution(IEnumerable<string> input)
     {
-        this.initialState = new State(0, []);
-
         var lines = input.ToArray();
         var generators = new List<(string name, int floor)>();
         var microchips = new List<(string name, int floor)>();
@@ -55,38 +27,30 @@ public partial class Solution
                 .Select(it => (it.Groups[1].Value, i)));
         }
 
-        foreach (var (name, floor) in generators)
-        {
-            this.initialState.GmPairs.Add(new GmPair(microchips.Single(it => it.name == name)
-                .floor, floor));
-        }
+        var pairs = generators
+            .Select((g => new GmPair(
+                microchips.Single(it => it.name == g.name)
+                    .floor,
+                g.floor)))
+            .ToList();
+
+        this.initialState = new State(0, pairs);
     }
 
     public object PartOne()
     {
-        var endState = new State(3,
+        var endState = new State(2,
             [
-                new GmPair(3, 3),
-                new GmPair(3, 3),
-                new GmPair(3, 3),
-                new GmPair(3, 3),
-                new GmPair(3, 3)
+                new GmPair(1, 0),
+                new GmPair(1, 0),
+                new GmPair(2, 2),
+                new GmPair(0, 0 ),
+                new GmPair(0, 0)
             ]
         );
 
-        Console.WriteLine($"INITIAL STATE");
-        Console.WriteLine($"Elevator: {this.initialState.Elevator}");
-        Console.WriteLine("---");
-        foreach (var pair in this.initialState.GmPairs)
-        {
-            Console.WriteLine($"Microchip: {pair.Microchip}");
-            Console.WriteLine($"Generator: {pair.Generator}");
-            Console.WriteLine();
-        }
-
-        // var bfs = new BreadthFirstSearch<State>(this.initialState, endState, this.GetNeighbours);
-        // return bfs.Search();
-        return "Not yet implemented";
+        var bfs = new BreadthFirstSearch<State>(this.initialState, endState, this.GetNeighbours);
+        return bfs.Search();
     }
 
     public object PartTwo()
@@ -96,43 +60,68 @@ public partial class Solution
 
     private IEnumerable<State> GetNeighbours(State state)
     {
-        var neighbours = new List<State>();
-        var possibleLevels = new List<int> { -1, 1 }
-            .Select(it => state.Elevator + it)
+        var neighbourOptions = new List<State>();
+        var currentFloor = state.Elevator;
+        var nextFloorOptions = new List<int> { -1, 1 }
+            .Select(it => currentFloor + it)
             .Where(it => it is >= 0 and <= 3);
 
-        foreach (var newLevel in possibleLevels)
+
+        // return nextFloorOptions.Select(it => new State(it, state.GmPairs));
+
+        foreach (var nextFloor in nextFloorOptions)
         {
             for (int i = 0; i < state.GmPairs.Count; i++)
             {
-                if (state.GmPairs[i].Generator == state.Elevator)
-                {
-                    var carriedGi = state.GmPairs[i] with { Generator = newLevel };
-                }
+                var head = state.GmPairs[..i];
+                var tail = state.GmPairs[(i+1)..];
+                var p = state.GmPairs[i];
 
-                if (state.GmPairs[i].Microchip == state.Elevator)
+                if (!new[] { p.Generator, p.Microchip }.Contains(currentFloor)) continue;
+                if (p.Generator == p.Microchip)
                 {
-                    var carriedMi = state.GmPairs[i] with { Microchip = newLevel };
+                    var newPairs = new List<GmPair>();
+                    newPairs.AddRange(head);
+                    newPairs.Add(new (nextFloor, nextFloor));
+                    newPairs.AddRange(tail);
+                    neighbourOptions.Add(new State(nextFloor,newPairs));
                 }
-
-                var carriedGm = new GmPair(Generator: newLevel, Microchip: newLevel);
 
                 for (int j = i; j < state.GmPairs.Count; j++)
                 {
-                    if (state.GmPairs[j].Generator == state.Elevator)
-                    {
-                        var carriedGj = state.GmPairs[i] with { Generator = newLevel };
-                    }
-
-                    if (state.GmPairs[i].Microchip == state.Elevator)
-                    {
-                        var carriedMj = state.GmPairs[i] with { Microchip = newLevel };
-                    }
-
-                    // yield return new State()
                 }
+
+                //
+                //     if (state.GmPairs[i].Generator == currentFloor)
+                //     {
+                //         var carriedGi = state.GmPairs[i] with { Generator = nextFloor };
+                //     }
+                //
+                // if (state.GmPairs[i].Microchip == currentFloor)
+                // {
+                //     var carriedMi = state.GmPairs[i] with { Microchip = nextFloor };
+                // }
+                //
+                // var carriedGm = new GmPair(Generator: nextFloor, Microchip: nextFloor);
+                //
+                // for (int j = i; j < state.GmPairs.Count; j++)
+                // {
+                //     if (state.GmPairs[j].Generator == currentFloor)
+                //     {
+                //         var carriedGj = state.GmPairs[i] with { Generator = nextFloor };
+                //     }
+                //
+                //     if (state.GmPairs[i].Microchip == currentFloor)
+                //     {
+                //         var carriedMj = state.GmPairs[i] with { Microchip = nextFloor };
+                //     }
+                //
+                //     // yield return new State()
+                // }
             }
         }
+
+        return neighbourOptions;
     }
 
     [GeneratedRegex(@"(\w+) generator")]

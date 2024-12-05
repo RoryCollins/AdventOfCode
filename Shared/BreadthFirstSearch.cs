@@ -3,18 +3,18 @@ namespace Shared;
 public class BreadthFirstSearch<TState>
     where TState : IEquatable<TState>
 {
-    private readonly TState start;
     private readonly TState end;
     private readonly Func<TState, IEnumerable<TState>> getNeighbours;
-    private Queue<TState> queue = new();
-    private HashSet<TState> visited = [];
-    private Dictionary<TState, int> distances = new();
+    private readonly Queue<TState> queue = new();
+    private readonly HashSet<TState> visited = [];
+    private readonly Dictionary<TState, int> distances = new();
 
     public BreadthFirstSearch(TState start, TState end, Func<TState, IEnumerable<TState>> getNeighbours)
     {
-        this.start = start;
         this.end = end;
         this.getNeighbours = getNeighbours;
+        this.queue.Enqueue(start);
+        this.distances.Add(start, 0);
     }
 
     public int Search()
@@ -35,7 +35,7 @@ public class BreadthFirstSearch<TState>
             foreach (var neighbour in neighbours)
             {
                 if (this.visited.Contains(neighbour)) continue;
-                this.distances.Add(neighbour, currentDistance+1);
+                this.distances.TryAdd(neighbour, currentDistance+1);
                 this.queue.Enqueue(neighbour);
             }
         }
