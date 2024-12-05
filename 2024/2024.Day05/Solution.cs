@@ -1,13 +1,10 @@
 namespace _2024.Day05;
 
-using System.ComponentModel.Design;
-
 public class Solution
 {
     private readonly Dictionary<int, List<int>> precedents;
     private readonly List<List<int>> updates;
     private readonly HashSet<int> allPages;
-    // private readonly List<int> orderedPages;
 
     public Solution(string input)
     {
@@ -36,17 +33,6 @@ public class Solution
             }
         }
 
-        // this.orderedPages = this.allPages.Except(this.precedents.Keys).ToList();
-        // while (this.orderedPages.Count < this.allPages.Count)
-        // {
-        //     var next = this.precedents
-        //         .Where(it => !it.Value.Except(this.orderedPages).Any())
-        //         .Select(it => it.Key)
-        //         .Except(this.orderedPages);
-        //     this.orderedPages.AddRange(next);
-        // }
-        //
-
         this.updates = inputParts[1]
             .Select(line => line
                 .Split(",")
@@ -72,8 +58,6 @@ public class Solution
         }
 
         return true;
-        // return pages.OrderBy(it => this.orderedPages.IndexOf(it))
-        //     .ToList().SequenceEqual(pages);
     }
 
     public object PartTwo()

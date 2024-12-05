@@ -1,6 +1,5 @@
 namespace _2016.Day11;
 
-using System.Collections;
 using System.Text;
 
 internal class State : IEquatable<State>
