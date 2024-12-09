@@ -33,6 +33,11 @@ public record Coordinate2D(int X, int Y)
         return Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
     }
 
+    public Coordinate2D ShiftTo(Coordinate2D other)
+    {
+        return new(other.X - this.X, other.Y - this.Y);
+    }
+
     public static Coordinate2D Origin => new(0, 0);
     public static Coordinate2D North => new(0, 1);
     public static Coordinate2D South => new(0, -1);
