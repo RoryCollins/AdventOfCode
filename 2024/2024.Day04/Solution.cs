@@ -6,11 +6,11 @@ using Shared;
 
 public class Solution
 {
-    private readonly Grid grid;
+    private readonly Grid<char> grid;
 
     public Solution(IEnumerable<string> input)
     {
-        this.grid = new Grid(input.ToList());
+        this.grid = new Grid<char>(input.ToList());
     }
 
     public object PartOne()

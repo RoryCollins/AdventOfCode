@@ -4,14 +4,14 @@ using Shared;
 
 public class Solution
 {
-    private readonly Grid grid;
+    private readonly Grid<char> grid;
     private readonly IEnumerable<Coordinate2D> obstacles;
     private readonly Coordinate2D origin;
     private readonly HashSet<Coordinate2D> visitedCoordinates;
 
     public Solution(IEnumerable<string> input)
     {
-        this.grid = new Grid(input.ToList());
+        this.grid = new Grid<char>(input.ToList());
         this.obstacles = this.grid.FindAll('#').ToList();
         this.origin = this.grid.FindAll('^').Single();
         this.visitedCoordinates = new HashSet<Coordinate2D>();

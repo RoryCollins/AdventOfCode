@@ -8,14 +8,14 @@ public class Solution
 
     private readonly List<string> input;
     private HashSet<char> beacons;
-    private Grid grid;
+    private Grid<char> grid;
     private HashSet<Coordinate2D> antinodes = [];
 
 
     public Solution(IEnumerable<string> testInput, IEnumerable<string> input)
     {
         this.input = (UseTestInput ? testInput : input).ToList();
-        this.grid = new Grid(this.input);
+        this.grid = new Grid<char>(this.input);
         this.beacons = this.input.SelectMany(line => line.Distinct()
                 .Except(['.']))
             .ToHashSet();

@@ -1,16 +1,18 @@
 namespace Shared;
 
-public class Grid
+public class Grid<T> where T : IEquatable<T>
 {
     public int Width;
     public int Height;
-    private readonly List<string> contents;
+    private readonly List<List<T>> contents;
 
-    public Grid(List<string> input)
+    public Grid(IEnumerable<IEnumerable<T>> input)
     {
-        Height = input.Count;
-        Width = input[0].Length;
-        contents = input;
+        var rows = input.ToList();
+
+        Height = rows.Count();
+        Width = rows.First().Count();
+        contents = rows.Select(it => it.ToList()).ToList();
         contents.Reverse();
     }
 
@@ -51,7 +53,7 @@ public class Grid
                && (coordinate.Y >= 0 && coordinate.Y < Height);
     }
 
-    public char At(Coordinate2D coordinate)
+    public T At(Coordinate2D coordinate)
     {
         return contents[coordinate.Y][coordinate.X];
     }
@@ -64,14 +66,14 @@ public class Grid
         }
     }
 
-    public IEnumerable<Coordinate2D> FindAll(char c)
+    public IEnumerable<Coordinate2D> FindAll(T c)
     {
         for (int y = 0; y < this.Height; y++)
         {
             for (int x = 0; x < this.Width; x++)
             {
                 var coordinate = new Coordinate2D(y, x);
-                if (this.At(coordinate) == c) yield return coordinate;
+                if (this.At(coordinate).Equals(c)) yield return coordinate;
             }
         }
     }
