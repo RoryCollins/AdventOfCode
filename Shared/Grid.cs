@@ -62,7 +62,7 @@ public class Grid<T> where T : IEquatable<T>
     {
         foreach (var line in this.contents)
         {
-            Console.WriteLine(line);
+            Console.WriteLine(string.Join("", line));
         }
     }
 
