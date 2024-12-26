@@ -3,34 +3,34 @@ using Shared;
 
 namespace _2024.Day13;
 
-record ClawMachine((int, int) ButtonA, (int, int) ButtonB, (long, long) Prize)
+record ClawMachine((int X, int Y) ButtonA, (int X, int Y) ButtonB, (long X, long Y) Prize)
 {
-    public long TokenCost()
+    public long TokenCost(Part part)
     {
-        var A1 = ButtonA.Item1;
-        var A2 = ButtonA.Item2;
-        var B1 = ButtonB.Item1;
-        var B2 = ButtonB.Item2;
-        var C1 = Prize.Item1;
-        var C2 = Prize.Item2;
+        var a1 = ButtonA.X;
+        var a2 = ButtonA.Y;
+        var b1 = ButtonB.X;
+        var b2 = ButtonB.Y;
+        var c1 = Prize.X;
+        var c2 = Prize.Y;
 
-        double det = A1 * B2 - A2 * B1;
+        double det = a1 * b2 - a2 * b1;
         if (det == 0)
         {
             return 0;
         } else
         {
-            var x = (B2 * C1 - B1 * C2) / det;
-            var y = (A1 * C2 - A2 * C1) / det;
+            var x = (b2 * c1 - b1 * c2) / det;
+            var y = (a1 * c2 - a2 * c1) / det;
             if (x % 1 != 0 || y % 1 != 0)
             {
                 return 0;
             }
 
-            // if (x > 100 || y > 100)
-            // {
-            //     return 0;
-            // }
+            if ( (part == Part.One) && (x > 100 || y > 100))
+            {
+                return 0;
+            }
             
             return (long)(3 * x + y);
         }
@@ -48,9 +48,21 @@ public partial class Solution
     public Solution(string testInput, string input)
     {
         this.input = (UseTestInput ? testInput : input).Split("\n\n").ToList();
-        const long offset = 10000000000000;
+    }
 
-        machines = this.input.Select(line =>
+    public object PartOne()
+    {
+        return InitialiseMachines(0).Sum(machine => machine.TokenCost(Part.One));
+    }
+
+    public object PartTwo()
+    {
+        return InitialiseMachines(10000000000000).Sum(machine => machine.TokenCost(Part.Two));
+    }
+
+    private IEnumerable<ClawMachine> InitialiseMachines(long offset)
+    {
+        return this.input.Select(line =>
         {
             var buttonA = ButtonARegex().Match(line);
             var buttonB = ButtonBRegex().Match(line);
@@ -60,16 +72,6 @@ public partial class Solution
                 (int.Parse(buttonB.Groups[1].Value), int.Parse(buttonB.Groups[2].Value)),
                 (int.Parse(prize.Groups[1].Value) + offset, int.Parse(prize.Groups[2].Value) + offset));
         });
-    }
-
-    public object PartOne()
-    {
-        return machines.Sum(machine => machine.TokenCost());
-    }
-
-    public object PartTwo()
-    {
-        return "Not yet implemented";
     }
 
     [GeneratedRegex(@"Button A: X\+(\d+), Y\+(\d+)")]
