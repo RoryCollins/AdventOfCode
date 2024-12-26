@@ -28,6 +28,11 @@ public static class ListExtensions
     {
         return Permute(new List<T>(), source.ToArray());
     }
+    
+    public static bool IsEmpty<T>(this IEnumerable<T> source)
+    {
+        return !source.Any();
+    }
 
     public static IEnumerable<T[]> Windowed<T>(this IEnumerable<T> source, int size, int step = 1)
     {
@@ -59,8 +64,6 @@ public static class ListExtensions
             {
                 yield return (newSource[i], newSource[m]);
             }
-
         }
     }
-
 }

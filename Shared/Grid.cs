@@ -13,8 +13,9 @@ public class Grid<T> where T : IEquatable<T>
         Height = rows.Count();
         Width = rows.First().Count();
         contents = rows.Select(it => it.ToList()).ToList();
-        contents.Reverse();
     }
+    
+    public void Reversed() => this.contents.Reverse();
 
     public Coordinate2D TopLeft() => new(0, Height - 1);
     public Coordinate2D BottomRight() => new(Width - 1, 0);
