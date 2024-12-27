@@ -46,22 +46,6 @@ public class Solution
             }
         }
 
-        // for (int y = 0; y <= all.Keys.Max(it => it.Y); y++)
-        // {
-        //     for (int x = 0; x <= all.Keys.Max(it => it.X); x++)
-        //     {
-        //         if (all.TryGetValue(new Coordinate2D(x,y), out var result))
-        //         {
-        //             Console.Write(result%10);
-        //         }
-        //         else
-        //         {
-        //             Console.Write(' ');
-        //         }
-        //     }
-        //
-        //     Console.WriteLine();
-        // }
         return new[] { Direction.North, Direction.East, Direction.South, Direction.West }.Min(it => all.TryGetValue(new(end, it), out var foo) ? foo : int.MaxValue);
     }
 
