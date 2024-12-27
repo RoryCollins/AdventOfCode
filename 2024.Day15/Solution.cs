@@ -109,12 +109,9 @@ public class Solution
         }
 
         var boulders = state.Boulders.ToList();
-
-        // boulders.Where(b => new[] { b.Left, b.Right }.Contains(proposal));
-
         var bouldersToMove = new HashSet<(Coordinate2D, Coordinate2D)>();
 
-        var queue = new System.Collections.Generic.Queue<Coordinate2D>();
+        var queue = new Queue<Coordinate2D>();
 
         var boulderEncountered = boulders.FirstOrDefault(b => new[] { b.Left, b.Right }.Contains(proposal));
         if (boulderEncountered != default)
