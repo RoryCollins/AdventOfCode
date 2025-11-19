@@ -1,44 +1,46 @@
 ﻿<Solution>
   <Folder Name="/2016/">
-    <Project Path="2016\2016.Day01\2016.Day01.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day02\2016.Day02.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day03\2016.Day03.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day04\2016.Day04.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day05\2016.Day05.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day06\2016.Day06.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day07\2016.Day07.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day08\2016.Day08.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day09\2016.Day09.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day10\2016.Day10.csproj" Type="Classic C#" />
-    <Project Path="2016\2016.Day11\2016.Day11.csproj" Type="Classic C#" />
+    <Project Path="2016\2016.Day01\2016.Day01.csproj" />
+    <Project Path="2016\2016.Day02\2016.Day02.csproj" />
+    <Project Path="2016\2016.Day03\2016.Day03.csproj" />
+    <Project Path="2016\2016.Day04\2016.Day04.csproj" />
+    <Project Path="2016\2016.Day05\2016.Day05.csproj" />
+    <Project Path="2016\2016.Day06\2016.Day06.csproj" />
+    <Project Path="2016\2016.Day07\2016.Day07.csproj" />
+    <Project Path="2016\2016.Day08\2016.Day08.csproj" />
+    <Project Path="2016\2016.Day09\2016.Day09.csproj" />
+    <Project Path="2016\2016.Day10\2016.Day10.csproj" />
+    <Project Path="2016\2016.Day11\2016.Day11.csproj" />
   </Folder>
   <Folder Name="/2017/">
-    <Project Path="2017.Day02\2017.Day02.csproj" Type="Classic C#" />
-    <Project Path="2017\2017.Day01\2017.Day01.csproj" Type="Classic C#" />
-    <Project Path="2017\2017.Day03\2017.Day03.csproj" Type="Classic C#" />
-    <Project Path="2017\2017.Day04\2017.Day04.csproj" Type="Classic C#" />
+    <Project Path="2017/2017.Day02/2017.Day02.csproj" />
+    <Project Path="2017\2017.Day01\2017.Day01.csproj" />
+    <Project Path="2017\2017.Day03\2017.Day03.csproj" />
+    <Project Path="2017\2017.Day04\2017.Day04.csproj" />
   </Folder>
   <Folder Name="/2024/">
-    <Project Path="2024.Day13\2024.Day13.csproj" Type="Classic C#" />
-    <Project Path="2024.Day14\2024.Day14.csproj" Type="Classic C#" />
-    <Project Path="2024.Day15\2024.Day15.csproj" Type="Classic C#" />
-    <Project Path="2024.Day16\2024.Day16.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day01\2024.Day01.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day02\2024.Day02.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day03\2024.Day03.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day04\2024.Day04.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day05\2024.Day05.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day06\2024.Day06.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day07\2024.Day07.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day08\2024.Day08.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day09\2024.Day09.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day10\2024.Day10.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day11\2024.Day11.csproj" Type="Classic C#" />
-    <Project Path="2024\2024.Day12\2024.Day12.csproj" Type="Classic C#" />
+    <Project Path="2024\2024.Day01\2024.Day01.csproj" />
+    <Project Path="2024\2024.Day02\2024.Day02.csproj" />
+    <Project Path="2024\2024.Day03\2024.Day03.csproj" />
+    <Project Path="2024\2024.Day04\2024.Day04.csproj" />
+    <Project Path="2024\2024.Day05\2024.Day05.csproj" />
+    <Project Path="2024\2024.Day06\2024.Day06.csproj" />
+    <Project Path="2024\2024.Day07\2024.Day07.csproj" />
+    <Project Path="2024\2024.Day08\2024.Day08.csproj" />
+    <Project Path="2024\2024.Day09\2024.Day09.csproj" />
+    <Project Path="2024\2024.Day10\2024.Day10.csproj" />
+    <Project Path="2024\2024.Day11\2024.Day11.csproj" />
+    <Project Path="2024\2024.Day12\2024.Day12.csproj" />
+    <Project Path="2024\2024.Day13\2024.Day13.csproj" />
+    <Project Path="2024\2024.Day14\2024.Day14.csproj" />
+    <Project Path="2024\2024.Day15\2024.Day15.csproj" />
+    <Project Path="2024\2024.Day16\2024.Day16.csproj" />
   </Folder>
   <Folder Name="/2025/">
-    <Project Path="2025\2025.Day01\2025.Day01.csproj" Type="Classic C#" />
+    <Project Path="2025/2025.Day01/2025.Day01.csproj" />
   </Folder>
-  <Project Path="AdventOfCodeTemplate\AdventOfCodeTemplate.csproj" Type="Classic C#" />
-  <Project Path="Shared\Shared.csproj" Type="Classic C#" />
+  <Folder Name="/Templates/">
+    <Project Path="ProjectTemplate\AdventOfCodeTemplate\AdventOfCodeTemplate.csproj" />
+  </Folder>
+  <Project Path="Shared\Shared.csproj" />
 </Solution>
