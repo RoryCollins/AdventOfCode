@@ -1,10 +1,8 @@
 ﻿using System.Diagnostics;
-using AdventOfCodeTemplate;
+using _2017.Day01;
 
-var testInput = File.ReadAllLines("input/test.txt")
-    .ToList();
-var input = File.ReadAllLines("input/actual.txt")
-    .ToList();
+var testInput = File.ReadAllText("testInput.txt");
+var input = File.ReadAllText("input.txt");
 var solution = new Solution(testInput, input);
 var stopwatch = new Stopwatch();
 

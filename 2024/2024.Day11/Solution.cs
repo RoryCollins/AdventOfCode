@@ -2,14 +2,14 @@ namespace _2024.Day11;
 
 public class Solution
 {
-    private const bool UseTestInput = false;
+    private const bool USE_TEST_INPUT = false;
 
-    private readonly IEnumerable<long> stones;
+    private readonly IEnumerable<long> _stones;
     private readonly Dictionary<long, IEnumerable<long>> oneSplitDictionary = new();
 
     public Solution(string testInput, string input)
     {
-        this.stones = (UseTestInput ? testInput : input)
+        this._stones = (USE_TEST_INPUT ? testInput : input)
             .Split(" ")
             .Select(long.Parse);
     }
@@ -17,14 +17,14 @@ public class Solution
     public object PartOne()
     {
         var final = Enumerable.Range(1, 25)
-            .Aggregate(this.stones, (acc, _) => acc.SelectMany(this.BlinkSingleStone))
+            .Aggregate(this._stones, (acc, _) => acc.SelectMany(this.BlinkSingleStone))
             .ToList();
         return final.Count;
     }
 
     public object PartTwo()
     {
-        var dictionary = this.stones.Select(it => (it, 1L))
+        var dictionary = this._stones.Select(it => (it, 1L))
             .ToDictionary();
 
         var results = Enumerable.Range(1, 75)

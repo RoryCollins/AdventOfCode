@@ -152,47 +152,4 @@ public class Solution
         return state with { Boulders = boulders, Robot = proposal };
     }
 
-    private static void PrintGrid(GridStatePartOne state)
-    {
-        for (int y = 0; y <= state.Walls.Max(it => it.Y); y++)
-        {
-            for (int x = 0; x <= state.Walls.Max(it => it.X); x++)
-            {
-                var cell = new Coordinate2D(x, y);
-                var symbol = cell == state.Robot
-                    ? '@'
-                    : state.Walls.Contains(cell)
-                        ? '#'
-                        : state.Boulders.Contains(cell)
-                            ? 'O'
-                            : '.';
-                Console.Write(symbol);
-            }
-
-            Console.WriteLine();
-        }
-    }
-
-    private static void PrintGrid(GridStatePartTwo state)
-    {
-        for (int y = 0; y <= state.Walls.Max(it => it.Y); y++)
-        {
-            for (int x = 0; x <= state.Walls.Max(it => it.X); x++)
-            {
-                var cell = new Coordinate2D(x, y);
-                var symbol = cell == state.Robot
-                    ? '@'
-                    : state.Walls.Contains(cell)
-                        ? '#'
-                        : state.Boulders.Select(it => it.Item1).Contains(cell)
-                            ? '['
-                            : state.Boulders.Select(it => it.Item2).Contains(cell)
-                                ? ']'
-                                : '.';
-                Console.Write(symbol);
-            }
-
-            Console.WriteLine();
-        }
-    }
 }

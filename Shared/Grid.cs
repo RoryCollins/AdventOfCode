@@ -2,23 +2,23 @@ namespace Shared;
 
 public class Grid<T> where T : IEquatable<T>
 {
-    public int Width;
-    public int Height;
+    public readonly int Width;
+    public readonly int Height;
     private readonly List<List<T>> contents;
 
     public Grid(IEnumerable<IEnumerable<T>> input)
     {
         var rows = input.ToList();
 
-        Height = rows.Count();
+        Height = rows.Count;
         Width = rows.First().Count();
         contents = rows.Select(it => it.ToList()).ToList();
     }
     
-    public void Reversed() => this.contents.Reverse();
+    // public void Reversed() => this.contents.Reverse();
 
-    public Coordinate2D TopLeft() => new(0, Height - 1);
-    public Coordinate2D BottomRight() => new(Width - 1, 0);
+    // public Coordinate2D TopLeft() => new(0, Height - 1);
+    // public Coordinate2D BottomRight() => new(Width - 1, 0);
 
     public IEnumerable<Coordinate2D> GetNeighbours(Coordinate2D centre, bool includeDiagonals)
     {
@@ -59,6 +59,8 @@ public class Grid<T> where T : IEquatable<T>
         return contents[coordinate.Y][coordinate.X];
     }
 
+    // ReSharper disable once UnusedMember.Global
+    // Useful for debugging
     public void Print()
     {
         foreach (var line in this.contents)

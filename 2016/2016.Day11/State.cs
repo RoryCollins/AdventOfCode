@@ -20,7 +20,7 @@ internal class State : IEquatable<State>
 
     public bool Equals(State? other)
     {
-        if (this.Elevator != other.Elevator) return false;
+        if (other != null && this.Elevator != other.Elevator) return false;
 
         foreach (var combination in this.GmPairs.Distinct())
         {
@@ -32,6 +32,7 @@ internal class State : IEquatable<State>
         return true;
     }
 
+    // ReSharper disable once UnusedMember.Global
     public void Print()
     {
         for (int y = 3; y >= 0; y--)

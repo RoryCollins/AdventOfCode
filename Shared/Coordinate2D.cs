@@ -25,12 +25,38 @@ public record Coordinate2D(int X, int Y)
             Direction.East => East,
             _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
         };
-        return this.Add(d*steps);
+        return Add(d*steps);
     }
 
     public int ManhattanDistanceTo(Coordinate2D other)
     {
         return Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
+    }
+
+    public IEnumerable<Coordinate2D> GetNeighbors(bool includeDiagonals = true)
+    {
+        var directions = new[]
+        {
+            North,
+            South,
+            East,
+            West,
+        };
+
+        if (includeDiagonals)
+        {
+            directions = directions.Concat([
+                        NorthEast,
+                        NorthWest,
+                        SouthEast,
+                        SouthWest
+                    ]
+                )
+                .ToArray();
+        }
+
+        return directions.Select(Add);
+
     }
 
     public Coordinate2D ShiftTo(Coordinate2D other)
