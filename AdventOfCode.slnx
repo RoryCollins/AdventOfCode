@@ -42,6 +42,7 @@
     <Project Path="2025/2025.Day03/2025.Day03.csproj" />
     <Project Path="2025/2025.Day04/2025.Day04.csproj" />
     <Project Path="2025/2025.Day05/2025.Day05.csproj" />
+    <Project Path="2025/2025.Day06/2025.Day06.csproj" />
   </Folder>
   <Folder Name="/Templates/">
     <Project Path="ProjectTemplate\AdventOfCodeTemplate\AdventOfCodeTemplate.csproj" />
