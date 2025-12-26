@@ -75,7 +75,7 @@ public class Grid<T> where T : IEquatable<T>
         {
             for (int x = 0; x < this.Width; x++)
             {
-                var coordinate = new Coordinate2D(y, x);
+                var coordinate = new Coordinate2D(x, y);
                 if (this.At(coordinate).Equals(c)) yield return coordinate;
             }
         }
