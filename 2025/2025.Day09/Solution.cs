@@ -71,21 +71,7 @@ public class Solution
         
         var startingPoint = condensedCoordinates.OrderBy(c => c.Y).ThenBy(c => c.X).First().Add(new Coordinate2D(1, 1));
 
-        var queue = new Queue<Coordinate2D>([startingPoint]);
-        while (queue.Count > 0)
-        {
-            var current = queue.Dequeue();
-            if (!validTiles.Add(current))
-            {
-                continue;
-            }
-
-            Direction[] directions = [Direction.North, Direction.East, Direction.South, Direction.West];
-            foreach (var direction in directions)
-            {
-                queue.Enqueue(current.Move(direction));
-            }
-        }
+        FloodFill(startingPoint, validTiles);
 
         var areas = new Dictionary<(Coordinate2D a, Coordinate2D b), long>();
         for (int i = 0; i < condensedCoordinates.Length - 1; i++)
@@ -120,6 +106,25 @@ public class Solution
         }
         
         return areas.MaxBy(x => x.Value).Value;
+    }
+    
+    private static void FloodFill(Coordinate2D startingPoint, HashSet<Coordinate2D> validTiles)
+    {
+        var queue = new Queue<Coordinate2D>([startingPoint]);
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+            if (!validTiles.Add(current))
+            {
+                continue;
+            }
+
+            Direction[] directions = [Direction.North, Direction.East, Direction.South, Direction.West];
+            foreach (var direction in directions)
+            {
+                queue.Enqueue(current.Move(direction));
+            }
+        }
     }
 
 
