@@ -39,6 +39,7 @@
   </Folder>
   <Folder Name="/2025/">
     <Project Path="2025/2025.Day01/2025.Day01.csproj" />
+    <Project Path="2025/2025.Day02/2025.Day02.csproj" />
     <Project Path="2025/2025.Day03/2025.Day03.csproj" />
     <Project Path="2025/2025.Day04/2025.Day04.csproj" />
     <Project Path="2025/2025.Day05/2025.Day05.csproj" />
