@@ -55,7 +55,7 @@ public class Solution
                     var times = n / sequence.Length;
                     var candidate = long.Parse(sequence.Repeat(times));
 
-                    if (candidate >= start && candidate <= end)
+                    if (candidate >= start && candidate <= end && candidate > 10)
                     {
                         yield return candidate;
                     }
